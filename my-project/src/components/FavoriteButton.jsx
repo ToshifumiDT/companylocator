@@ -1,5 +1,5 @@
 import React from 'react';
-import './';
+import './FavoriteButton.css';
 
 const FavoriteButton = () => {
     return (

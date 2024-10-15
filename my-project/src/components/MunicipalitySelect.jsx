@@ -1,5 +1,5 @@
 import React from 'react';
-import './';
+import './MunicipalitySelect.css';
 
 const MunicipalitySelect = () => {
     return (

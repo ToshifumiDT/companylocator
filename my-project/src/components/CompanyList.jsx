@@ -1,5 +1,5 @@
 import React from 'react';
-import './';
+import './CompanyList.css';
 
 const CompanyList = () => {
     return (
