@@ -1,11 +1,23 @@
-import React from 'react';
 import './CompanyDetailModal.css';
 
-const CompanyDetailModal = () => {
+function CompanyDetailModal({ company, isOpen, onClose }) {
+    if (!isOpen || !company) {
+      return null;
+    }
+  
     return (
-        <section>
-        </section>
+      <div className="modal">
+        <div className="modal-content">
+          <h2>{company.name}</h2>
+          <p>Established: {company.established}</p>
+          <p>Category: {company.category}</p>
+          <p>Employees: {company.employees}</p>
+          <p>Industry: {company.industry}</p>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
     );
-};
-
-export default CompanyDetailModal;
+  }
+  
+  export default CompanyDetailModal;
+  

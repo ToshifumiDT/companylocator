@@ -1,11 +1,16 @@
-import React from 'react';
 import './FavoriteButton.css';
 
-const FavoriteButton = () => {
+function FavoriteButton({ company, isFavorited, onToggleFavorite }) {
+    if (!company) {
+      return null;
+    }
+  
     return (
-        <section>
-        </section>
+      <button onClick={() => onToggleFavorite(company)}>
+        {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
     );
-};
-
-export default FavoriteButton;
+  }
+  
+  export default FavoriteButton;
+  
