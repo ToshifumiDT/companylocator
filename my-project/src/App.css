@@ -1,42 +1,114 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  background-color: #808080; 
+  color: white; 
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.container {
+  width: 80%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #444; 
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 10px;
+}
+
+/* Styling for the companylist */
+.company-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.company-item {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start;
+  margin-bottom: 30px; 
+  padding: 20px;
+  background-color: #555; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling for the company information */
+.company-info {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+}
+
+.company-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px; 
+}
+
+.company-id {
+  font-size: 14px;
+  color: #ccc; 
+}
+
+/* favorite button */
+.favorite-button {
+  background-color: #197dff; 
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; 
+}
+
+.favorite-button:hover {
+  background-color: #002e69; 
+}
+
+/*error messages */
+.error-message {
+  background-color: #d9534f;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .company-item {
+    padding: 15px;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .company-name {
+    font-size: 16px;
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .favorite-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 }

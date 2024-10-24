@@ -1,24 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchMunicipalities } from '../api/ssbapi'; 
 import './MunicipalitySelect.css';
 
 function MunicipalitySelect({ onSelect }) {
-  const [selected, setSelected] = useState('');
+  const [municipalities, setMunicipalities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+   // Fetch municipality data when the component is mounted
+  useEffect(() => {
+    fetchMunicipalities()
+      .then(setMunicipalities)
+      .catch((err) => setError("Failed to fetch municipalities"))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setSelected(value);
-    onSelect(value);
+    onSelect(value);  // Pass the municipality code
   };
+
+  if (loading) {
+    return <p>Loading municipalities...</p>;  // Loading
+  }
+
+  if (error) {
+    return <p>{error}</p>;  // Display error
+  }
 
   return (
     <div>
       <label htmlFor="municipality">Select Municipality:</label>
-      <select id="municipality" value={selected} onChange={handleChange}>
-        <option value="">Choose...</option>
-        <option value="Oslo">Oslo</option>
-        <option value="Bergen">Bergen</option>
-        <option value="Trondheim">Trondheim</option>
-        {/* add more? */}
+      <select id="municipality" onChange={handleChange}>
+        <option value="">Choose a municipality</option>
+        {municipalities.map((municipality) => (
+          <option key={municipality.code} value={municipality.code}>
+            {municipality.name}
+          </option>
+        ))}
       </select>
     </div>
   );

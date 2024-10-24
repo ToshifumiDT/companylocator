@@ -1,9 +1,8 @@
-import { fetchCompanies } from './api/api';
+import { fetchCompanies } from './api/brregapi';
 import { useState, useEffect } from 'react';
 import CompanyDetailModal from './components/CompanyDetailModal';
 import CompanyList from './components/CompanyList';
 import ErrorMessage from './components/ErrorMessage';
-import FavoriteButton from './components/FavoriteButton';
 import MunicipalitySelect from './components/MunicipalitySelect';
 import './App.css';
 
@@ -17,10 +16,14 @@ function App() {
 
   useEffect(() => {
     if (selectedMunicipality) {
-      // API呼び出しで企業リストを取得
+      setCompanyList([]);  // Clear the list when the municipality is changed
+      setError(null);      // Clear the error as well
       fetchCompanies(selectedMunicipality)
         .then(setCompanyList)
-        .catch((err) => setError("企業情報の取得に失敗しました"));
+        .catch((err) => {
+          setError('Failed to obtain company information');
+          setCompanyList([]);  // Clear the list in case of an error
+        });
     }
   }, [selectedMunicipality]);
 
@@ -35,6 +38,7 @@ function App() {
 
   function handleCloseModal() {
     setIsModalOpen(false);
+    setSelectedCompany(null); // Reset the selected company after closing the modal
   }
 
   function handleToggleFavorite(company) {
@@ -48,10 +52,10 @@ function App() {
   return (
     <>
       <MunicipalitySelect onSelect={handleMunicipalitySelect} />
+      {selectedMunicipality === null && <p>Please select a municipality to view companies.</p>}
       {error && <ErrorMessage message={error} />}
-      <CompanyList companies={companyList} onCompanyClick={handleCompanyClick} />
+      <CompanyList companies={companyList} onCompanyClick={handleCompanyClick} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
       <CompanyDetailModal company={selectedCompany} isOpen={isModalOpen} onClose={handleCloseModal} />
-      <FavoriteButton company={selectedCompany} isFavorited={favorites.includes(selectedCompany)} onToggleFavorite={handleToggleFavorite} />
     </>
   );
 }
