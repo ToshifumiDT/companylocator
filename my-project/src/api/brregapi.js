@@ -1,6 +1,6 @@
 export const fetchCompanies = async (municipalityCode) => {
     // API endpoint URL
-  const url = `https://data.brreg.no/enhetsregisteret/api/enheter?kommunenummer=${municipalityCode}&size=10000&fraStiftelsesdato=2022-01-01&tilStiftelsesdato=2022-12-31`;
+  const url = `https://data.brreg.no/enhetsregisteret/api/enheter?kommunenummer=${municipalityCode}&size=10000&fraStiftelsesdato=2022-01-01&tilStiftelsesdato=2024-12-31`;
 
   try {
     // API request
